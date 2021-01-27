@@ -1,0 +1,82 @@
+﻿@model IEnumerable<Anyware.Models.UserAdminInfo>
+
+@{
+    ViewBag.Title = "Index";
+}
+                      <div class="text-center">
+                          
+                              <h2>Users</h2>
+                          
+                          </div>
+                          
+                          <table class="table">
+                              <tr>
+                                  <th>
+                                      @Html.DisplayNameFor(model => model.User.Vendor.VendorName)
+                                  </th>
+                                  <th>
+                                      @Html.DisplayNameFor(model => model.User.FirstName)
+                                  </th>
+                                  <th>
+                                      @Html.DisplayNameFor(model => model.User.MiddleName)
+                                  </th>
+                                  <th>
+                                      @Html.DisplayNameFor(model => model.User.LastName)
+                                  </th>
+                                  <th>
+                                      @Html.DisplayNameFor(model => model.User.DateofBirth)
+                                  </th>
+                                  <th>
+                                      @Html.DisplayNameFor(model => model.User.PersonalPhone)
+                                  </th>
+                                  <th>
+                                      @Html.DisplayNameFor(model => model.User.Email)
+                                  </th>
+                                  <th>
+                                      Permissions
+                                  </th>
+                                  
+                                  <th></th>
+                              </tr>
+
+                              @foreach (var item in Model) {
+                              <tr>
+                                  <td>
+                                      @Html.DisplayFor(modelItem => item.User.Vendor.VendorName)
+                                  </td>
+                                  <td>
+                                      @Html.DisplayFor(modelItem => item.User.FirstName)
+                                  </td>
+                                  <td>
+                                      @Html.DisplayFor(modelItem => item.User.MiddleName)
+                                  </td>
+                                  <td>
+                                      @Html.DisplayFor(modelItem => item.User.LastName)
+                                  </td>
+                                  <td>
+                                      @Html.DisplayFor(modelItem => item.User.DateofBirth)
+                                  </td>
+                                  <td>
+                                      @Html.DisplayFor(modelItem => item.User.PersonalPhone)
+                                  </td>
+                                  <td>
+                                      @Html.DisplayFor(modelItem => item.User.Email)
+                                  </td>
+                                  <td>
+                                      @foreach (var role in item.Roles)
+            {
+                                      <span>@Html.DisplayFor(x=>role) </span>
+            }
+                                  </td>
+                                  
+                                  <td>
+                                      @Html.ActionLink("Edit", "Edit", new { id=item.User.Id }, new { @id = "ganon" })
+                                      @Html.ActionLink("Details", "Details", new { id= item.User.Id }, new { @id = "ganon" })
+                                      @Html.ActionLink("Delete", "Delete", new { id= item.User.Id }, new { @id = "ganon" })
+                                  </td>
+
+
+                              </tr>
+}
+
+                          </table>

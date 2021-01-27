@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Anyware.Models.ProductCategory>
+
+    @{
+    ViewBag.Title = "Index";
+    }
+    <div class="text-center">
+        <h2>Product Categories</h2>
+        </div>
+        <p>
+            
+            <a class="btn btn-default col-md-2" href="/ProductCategories/Create">CREATE NEW</a>
+        </p>
+        <table class="table">
+            <tr>
+                <th id="tdNoBorderTop">
+                    @Html.DisplayNameFor(model => model.VatCategory.VatName)
+                </th>
+                <th id="tdNoBorderTop">
+                    @Html.DisplayNameFor(model => model.CategoryName)
+                </th>
+                <th id="tdNoBorderTop"></th>
+            </tr>
+
+            @foreach (var item in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VatCategory.VatName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CategoryName)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id=item.ProductCategoryID }, new { @id = "ganon" }) |
+                    @Html.ActionLink("Details", "Details", new { id=item.ProductCategoryID }, new { @id = "ganon" }) |
+                    @Html.ActionLink("Delete", "Delete", new { id=item.ProductCategoryID }, new { @id = "ganon" })
+                </td>
+            </tr>
+}
+
+        </table>

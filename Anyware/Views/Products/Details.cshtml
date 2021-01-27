@@ -1,0 +1,85 @@
+﻿@model Anyware.Models.Product
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div>
+   
+</div>
+
+<div id="ProductDetails">
+    <h3>Product Details</h3>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductCategory.CategoryName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductCategory.CategoryName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductUnitOfMeasurement.UnitName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductUnitOfMeasurement.UnitName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductStatus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductPrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductPrice)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UnitsInStock)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UnitsInStock)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    <div class="col-md-6">
+        <div class="col-md-6">
+            @*@Html.ActionLink("Edit", "Edit", new { id = Model.ProductID }) |*@
+            <a class="btn btn-default col-md-6" href="/Products/Edit/@Model.ProductID ">EDIT</a>
+            @*@Html.ActionLink("Back to List", "Index")*@
+            <a class="btn btn-default col-md-6" href="/Products/Index">BACK</a>
+        </div>
+        <div class="col-md-6"></div>
+    </div>
+    <br />
+</p>
+

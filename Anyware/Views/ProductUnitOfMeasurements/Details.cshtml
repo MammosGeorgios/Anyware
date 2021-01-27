@@ -1,0 +1,42 @@
+﻿@model Anyware.Models.ProductUnitOfMeasurement
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div>
+    <div id="ProductUnitOfMeasurement">
+        <h4>Details of Product Unit Of Measurement</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.UnitName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.UnitName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.UnitAbbreviation)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.UnitAbbreviation)
+            </dd>
+
+        </dl>
+    </div>
+    </div>
+<p>
+    <div class="col-md-6">
+        <div class="col-md-6">
+            <a class="btn btn-default col-md-6" href="/ProductUnitOfMeasurements/Edit/@Model.ProductUnitOfMeasurementID ">EDIT</a>
+            <a class="btn btn-default col-md-6" href="/ProductUnitOfMeasurements/Index">BACK</a>
+        </div>
+        <div class="col-md-6"></div>
+
+    </div>
+    <br />
+   
+</p>

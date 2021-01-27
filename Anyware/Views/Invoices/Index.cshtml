@@ -1,0 +1,41 @@
+﻿<div id="dataModel"></div>
+
+@section JavaScript{
+    <script src="~/Scripts/jquery.signalR-2.4.1.min.js"></script>
+    <script src="/signalr/hubs"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            var hubNotify = $.connection.invoicesHub;
+
+            $.connection.hub.start().done(function () {
+                getAll();
+
+
+            });
+
+            hubNotify.client.refreshInvoiceData = function () {
+                getAll();
+
+            };
+        });
+
+        function getAll() {
+            var model = $('#dataModel');
+            $.ajax({
+                url: '/Invoices/GetInvoiceData/@ViewBag.Message',
+                data: model,
+                contentType: 'application/html ; charset:utf-8',
+                type: 'GET',
+                dataType: 'html',
+                success: function (result) { model.empty().append(result); }
+            });
+
+
+
+        }
+
+
+    </script>
+}
+

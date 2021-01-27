@@ -1,0 +1,50 @@
+﻿@model Anyware.Models.ProductUnitOfMeasurement
+
+@{
+    ViewBag.Title = "Create";
+}
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <div id="ProductUnitOfMeasurement">
+        <h4>Create New Product Unit Of Measurement</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.UnitName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.UnitName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.UnitName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.UnitAbbreviation, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.UnitAbbreviation, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.UnitAbbreviation, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+    <div class="form-group col-md-6">
+
+        <div class="col-md-6">
+            <input type="submit" value="CREATE" class="btn btn-default col-md-6" />
+            <a class="btn btn-default col-md-6" href="/ProductUnitOfMeasurements/Index">BACK</a>
+        </div>
+        <div class="col-md-6"></div>
+        <br />
+    </div>
+    <br />
+    <br />
+
+</div>
+    }
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }

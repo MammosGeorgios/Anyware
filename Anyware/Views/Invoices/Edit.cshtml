@@ -1,0 +1,137 @@
+﻿@model Anyware.Models.Invoice
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <div id="InvoiceDetails">
+        <h4>Edit Invoice</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.InvoiceID)
+
+        @if (User.IsInRole("Administrator"))
+        {
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.OrderID, "OrderID", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("OrderID", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.OrderID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.InvoiceStatus, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EnumDropDownListFor(model => model.InvoiceStatus, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.InvoiceStatus, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.DateCreated, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.DateCreated, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.DateCreated, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        }
+
+        @if (User.IsInRole("Manager"))
+        {
+            <span>
+                @Html.HiddenFor(model => model.OrderID)
+                @Html.HiddenFor(model => model.InvoiceStatus)
+                @Html.HiddenFor(model => model.DateCreated)
+            </span>
+        }
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PaymentDueDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PaymentDueDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.PaymentDueDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TotalPrice, "New Total Price", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TotalPrice, new { htmlAttributes = new { @class = "form-control", @id = "TotalPrice", @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.TotalPrice, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Adjust By Percentage</label>
+            <div class="col-md-10">
+               
+
+                @Html.TextBox("Quantity", 100, new
+            {
+              @class = "form-control",
+              @id = "priceAdjustTextbox",
+              @max = "1000",
+              @type = "number",
+              @min = "0",
+
+            })
+
+
+
+            </div>
+
+        </div>
+
+
+        <br />
+        <br />
+
+    </div>
+    
+    <div class="form-group col-md-6">
+
+        <div class="col-md-6">
+            <input type="submit" value="SAVE" class="btn btn-default col-md-6" />
+            <a class="btn btn-default col-md-6" href="/Invoices/Index">BACK</a>
+        </div>
+        <div class="col-md-6"></div>
+        <br />
+    </div>
+    <br />
+    <br />
+    <br />
+</div>
+}
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+<script>
+
+        $(document).ready(function () {
+            $("#priceAdjustTextbox").on("input", function () {
+
+                var percentage = $("#priceAdjustTextbox").val();
+                var originalTotalPrice = @Model.TotalPrice ;
+                var newTotalPrice = originalTotalPrice * percentage / 100; 
+                $("#TotalPrice").val(newTotalPrice.toFixed(2));
+
+
+            });
+        });
+
+</script>
+}

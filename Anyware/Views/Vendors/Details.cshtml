@@ -1,0 +1,122 @@
+﻿@model Anyware.Models.VendorDetails
+
+@{
+    ViewBag.Title = "Details";
+}
+
+    <div>
+        <div class="col-md-4 text-wrap" id="vendorDetails">
+
+            <h4 class="text-center">Vendor Details</h4>
+        
+        <dl class="dl-horizontal ">
+            <dt>
+                @Html.DisplayNameFor(model => model.Vendor.VendorName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Vendor.VendorName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Vendor.VendorAFM)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Vendor.VendorAFM)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Vendor.VendorLegalName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Vendor.VendorLegalName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Vendor.VendorDOI)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Vendor.VendorDOI)
+            </dd>
+        </dl>
+        @if (User.IsInRole("Administrator"))
+        {
+        <div class="col-md-12 text-center">
+            <p>
+                @Html.DisplayNameFor(model => model.Vendor.VendorSecretKey)
+
+
+                <div class="text-wrap" id="vendorKey">@Model.Vendor.VendorSecretKey</div>
+                <br />
+
+
+            </p>
+        </div>
+        }
+
+        <p>
+            @*@Html.ActionLink("Edit", "Edit", new { id = Model.Vendor.VendorID })*@
+            <a class="btn btn-default col-md-6" href="/Vendors/Edit/@Model.Vendor.VendorID ">EDIT</a>
+
+
+            @*@Html.ActionLink("Back to List", "Index")*@
+            <a class="btn btn-default col-md-6" href="/Vendors/Index">BACK</a>
+        </p>
+
+
+    </div>
+    <div class="col-md-8">
+
+        <h4 id="vendorUserTableTitle" class="text-center"> Vendor Users</h4>
+
+
+        <table class="table">
+            <tr>
+                <th>
+                    Last Name
+                </th>
+                <th>
+                    First Name
+                </th>
+                <th>
+                    Email
+                </th>
+                <th>
+                    Phone
+                </th>
+
+            </tr>
+
+            @foreach (var item in Model.Users)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(x => item.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(x => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(x => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(x => item.Phone)
+                </td>
+
+            </tr>
+            }
+
+        </table>
+        <br />
+        <br />
+        <br />
+
+    </div>
+
+
+
+</div>
+

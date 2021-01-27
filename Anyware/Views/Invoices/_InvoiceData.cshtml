@@ -1,0 +1,366 @@
+﻿@model IEnumerable<Anyware.Models.Invoice>
+
+    @{
+    ViewBag.Title = "Index";
+    }
+    <div class="text-center">
+
+    
+    <h2>Invoices</h2>
+    </div>
+
+
+    
+
+    @if (User.IsInRole("Validated User"))
+{
+    <table class="table">
+        <tr>
+            <th id="tdNoBorderTop">
+
+                @Html.ActionLink("Vendor", "Index", new { sortOrder = ViewBag.VendorNameParam }, new { @id = "zelda" })
+            </th>
+            <th id="tdNoBorderTop">
+                @Html.ActionLink("Status", "Index", new { sortOrder = ViewBag.InvoiceStatusParam }, new { @id = "zelda" })
+            </th>
+
+            <th id="tdNoBorderTop">
+                @Html.ActionLink("Payment Due Date", "Index", new { sortOrder = ViewBag.DateSortParam }, new { @id = "zelda" })
+            </th>
+
+            <th id="tdNoBorderTop">
+                @Html.ActionLink("Date Created", "Index", new { sortOrder = ViewBag.DateCreatedParam }, new { @id = "zelda" })
+            </th>
+            <th id="tdNoBorderTop">
+                <a id="zelda">
+                    @Html.DisplayNameFor(model => model.TotalPrice)
+                </a>
+            </th>
+            <th id="tdNoBorderTop"></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Order.ApplicationUser.Vendor.VendorName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InvoiceStatus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PaymentDueDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateCreated)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalPrice)
+            </td>
+            <td>
+
+                @Html.ActionLink("Details", "Details", new { id = item.InvoiceID }, new { @id = "ganon" })
+                
+
+            </td>
+        </tr>
+        }
+
+    </table>
+
+}
+
+    @if (User.IsInRole("Manager"))
+{
+
+    <div id="pendingShipment" >
+        <h3 class="text-center">Pending Shipment Invoices</h3>
+        <table class="table">
+
+            @foreach (var item in Model)
+            {
+                if (item.InvoiceStatus == (Anyware.Models.InvoiceStatus)0)
+                {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Order.ApplicationUser.Vendor.VendorName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.InvoiceStatus)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PaymentDueDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateCreated)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TotalPrice)
+                </td>
+                <td>
+                    @Html.ActionLink("Confirm Shipment", "ConfirmShipment", new { id = item.InvoiceID }, new { @id = "ganon" }) |
+                    @Html.ActionLink("Cancel", "Cancel", new { id = item.InvoiceID }, new { @id = "ganon" }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.InvoiceID }, new { @id = "ganon" })
+                </td>
+            </tr>
+                }
+            }
+
+        </table>
+    </div>
+    <div id="pendingPayment">
+        <h3 class="text-center">Pending Payment Invoices</h3>
+        <table class="table">
+
+            @foreach (var item in Model)
+            {
+                if (item.InvoiceStatus == (Anyware.Models.InvoiceStatus)1)
+                {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Order.ApplicationUser.Vendor.VendorName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.InvoiceStatus)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PaymentDueDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateCreated)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TotalPrice)
+                </td>
+                <td>
+
+                    @Html.ActionLink("Details", "Details", new { id = item.InvoiceID }, new { @id = "ganon" })
+                </td>
+            </tr>
+                }
+            }
+
+        </table>
+
+    </div>
+    <div id="completedPayment">
+        <h3 class="text-center">Completed Invoices</h3>
+        <table class="table">
+
+            @foreach (var item in Model)
+            {
+                if (item.InvoiceStatus == (Anyware.Models.InvoiceStatus)2)
+                {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Order.ApplicationUser.Vendor.VendorName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.InvoiceStatus)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PaymentDueDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateCreated)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TotalPrice)
+                </td>
+                <td>
+                    @Html.ActionLink("Details", "Details", new { id = item.InvoiceID }, new { @id = "ganon" })
+                </td>
+            </tr>
+                }
+            }
+
+        </table>
+
+    </div>
+    <div id="cancelled">
+        <h3 class="text-center">Cancelled Invoices</h3>
+        <table class="table">
+
+            @foreach (var item in Model)
+            {
+                if (item.InvoiceStatus == (Anyware.Models.InvoiceStatus)3)
+                {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Order.ApplicationUser.Vendor.VendorName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.InvoiceStatus)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PaymentDueDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateCreated)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TotalPrice)
+                </td>
+                <td>
+                    @Html.ActionLink("Details", "Details", new { id = item.InvoiceID }, new { @id = "ganon" })
+                </td>
+            </tr>
+                }
+            }
+
+        </table>
+
+    </div>
+
+
+}
+
+    @if (User.IsInRole("Administrator"))
+{
+
+    <div id="pendingShipment">
+        <h3 class="text-center">Pending Shipment Invoices</h3>
+        <table class="table">
+
+            @foreach (var item in Model)
+            {
+                if (item.InvoiceStatus == (Anyware.Models.InvoiceStatus)0)
+                {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Order.ApplicationUser.Vendor.VendorName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.InvoiceStatus)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PaymentDueDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateCreated)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TotalPrice)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.InvoiceID }, new { @id = "ganon" }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.InvoiceID }, new { @id = "ganon" }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.InvoiceID }, new { @id = "ganon" })
+                </td>
+            </tr>
+                }
+            }
+
+        </table>
+    </div>
+    <div id="pendingPayment">
+        <h3 class="text-center">Pending Payment Invoices</h3>
+        <table class="table">
+
+            @foreach (var item in Model)
+            {
+                if (item.InvoiceStatus == (Anyware.Models.InvoiceStatus)1)
+                {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Order.ApplicationUser.Vendor.VendorName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.InvoiceStatus)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PaymentDueDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateCreated)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TotalPrice)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.InvoiceID }, new { @id = "ganon" }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.InvoiceID }, new { @id = "ganon" }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.InvoiceID }, new { @id = "ganon" })
+                </td>
+            </tr>
+                }
+            }
+
+        </table>
+
+    </div>
+    <div id="completedPayment">
+        <h3 class="text-center">Completed Invoices</h3>
+        <table class="table">
+
+            @foreach (var item in Model)
+            {
+                if (item.InvoiceStatus == (Anyware.Models.InvoiceStatus)2)
+                {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Order.ApplicationUser.Vendor.VendorName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.InvoiceStatus)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PaymentDueDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateCreated)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TotalPrice)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.InvoiceID }, new { @id = "ganon" }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.InvoiceID }, new { @id = "ganon" }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.InvoiceID }, new { @id = "ganon" })
+                </td>
+            </tr>
+                }
+            }
+
+        </table>
+
+    </div>
+    <div id="cancelled">
+        <h3 class="text-center">Cancelled Invoices</h3>
+        <table class="table">
+
+            @foreach (var item in Model)
+            {
+                if (item.InvoiceStatus == (Anyware.Models.InvoiceStatus)3)
+                {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Order.ApplicationUser.Vendor.VendorName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.InvoiceStatus)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PaymentDueDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateCreated)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TotalPrice)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.InvoiceID }, new { @id = "ganon" }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.InvoiceID }, new { @id = "ganon" }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.InvoiceID }, new { @id = "ganon" })
+                </td>
+            </tr>
+                }
+            }
+
+        </table>
+
+    </div>
+
+
+}

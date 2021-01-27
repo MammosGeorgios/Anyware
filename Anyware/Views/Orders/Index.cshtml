@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Anyware.Models.Order>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="text-center">
+    
+    <h2 >Orders</h2>
+
+    </div>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ApplicationUser.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateStarted)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ApplicationUser.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateStarted)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.OrderID }, new { @id = "ganon" }) |
+            @Html.ActionLink("Details", "Details", new { id=item.OrderID }, new { @id = "ganon" }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.OrderID }, new { @id = "ganon" })
+        </td>
+    </tr>
+}
+
+</table>

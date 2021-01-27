@@ -1,0 +1,96 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+<div id="main-body">
+<div class="jumbotron text-center">
+    <h1>Anyware</h1>
+    <p class="lead">Keep your business with full stocks and happy customers 24/7</p>
+</div>
+
+
+@if (!User.Identity.IsAuthenticated)
+{
+    <div id="indexdivs"><h4 id="whiteText">Please Login to get access!</h4></div>
+}
+@if (User.IsInRole("Unvalidated User"))
+{
+    <div id="indexdivs">
+        <div>
+            <h4>To begin using our application please use your Vendor Key to activate your account</h4>
+            <h6>Currently your account has not been verified with any of our vendors. Consult your business on how to obtain your Vendor Key!</h6>
+        </div>
+        <div>
+            @using (Html.BeginForm("ValidateVendor", "Manage", FormMethod.Post, new { @class = "form-inline" }))
+            {
+                <div>
+                    <span>VENDOR KEY:</span>
+                    @Html.TextBox("key", null, new { @class = "form-control col-6", @id = "Validatetextbox", @type = "text", required = "required" })
+                    <input type="submit" class="btn btn-danger col-2" value="Submit">
+                </div>
+            }
+
+        </div>
+    </div>
+}
+
+
+@if (User.IsInRole("Validated User"))
+{
+
+    <div class="row">
+        <div id="indexdivs" class="col-md-4">
+            <h2>Create New Order</h2>
+            <p>
+                Create a new order for your Vendor
+            </p>
+            @Html.ActionLink("New Order", "Create", "Orders", null, new { @class = "btn btn - default " })
+        </div>
+        <div id="indexdivs" class="col-md-4">
+            <h2>Continue your Order</h2>
+            <p>
+                Continue from where you left off!
+            </p>
+            @Html.ActionLink("Continue Order", "ContinueOrder", "Orders", null, new { @class = "btn btn - default " })
+        </div>
+        <div id="indexdivs" class="col-md-4">
+            <h2>View Invoices</h2>
+            <p>View invoiced orders and proceed to payment</p>
+            @Html.ActionLink("Invoices", "Index", "Invoices", null, new { @class = "btn btn - default " })
+        </div>
+
+    </div>
+
+}
+
+@if (User.IsInRole("Manager") || User.IsInRole("Administrator"))
+{
+
+    <div class="row" id="homeManagerAdminOptions">
+        <div id="indexdivs" class="col-md-4">
+            <h2>View Invoices</h2>
+            <p>
+                Check all Invoices
+            </p>
+            @Html.ActionLink("Invoices", "Index", "Invoices", null, new { @class = "btn btn - default " })
+        </div>
+        <div id="indexdivs" class="col-md-4">
+            <h2>View Products</h2>
+            <p>
+                View Products and Update their Stock
+            </p>
+            @Html.ActionLink("Products", "Index", "Products", null, new { @class = "btn btn - default " })
+        </div>
+        @if (User.IsInRole("Administrator"))
+        {
+            <div id="indexdivs" class="col-md-4">
+                <h2>View Users</h2>
+                <p>View All Users</p>
+                @Html.ActionLink("Users", "Index", "ApplicationUsers", null, new { @class = "btn btn - default " })
+            </div>
+        }
+
+    </div>
+
+}
+
+</div>

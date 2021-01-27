@@ -1,0 +1,38 @@
+﻿@model IEnumerable<Anyware.Models.VatCategory>
+
+    @{
+    ViewBag.Title = "Index";
+    }
+     <div class="text-center">
+     <h2>VAT Categories</h2>
+     </div>
+    <div id="VATCategory">
+        <a class="btn btn-default col-md-2" href="/VatCategories/Create">Create New</a>
+        <table class="table">
+            <tr>
+                <th id="tdNoBorderTop">
+                    @Html.DisplayNameFor(model => model.VatName)
+                </th>
+                <th id="tdNoBorderTop">
+                    @Html.DisplayNameFor(model => model.VatPercentage)
+                </th>
+                <th id="tdNoBorderTop"></th>
+            </tr>
+
+            @foreach (var item in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VatName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VatPercentage)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id=item.VatCategoryID }, new { @id = "ganon" }) |
+                    @Html.ActionLink("Details", "Details", new { id=item.VatCategoryID }, new { @id = "ganon" }) |
+                    @Html.ActionLink("Delete", "Delete", new { id=item.VatCategoryID }, new { @id = "ganon" })
+                </td>
+            </tr>
+}
+
+        </table>

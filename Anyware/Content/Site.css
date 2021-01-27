@@ -1,0 +1,372 @@
+﻿body {
+    background-image: url("/Content2/assets/img/wolf_cave.jpg") !important;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    display: -moz-box;
+    webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: -webkit-box;
+    padding-top: 50px;
+    padding-bottom: 20px;
+    display: flex;
+}
+
+    body > div.container.body-content{
+        color:white;
+        
+    }
+    /* Set padding to keep content from hitting the edges */
+.body-content {
+    
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+.jumbotron {
+    background-color: RGB(0,0,0,0.0);
+    background-size: cover auto;
+}
+    .jumbotron > h1 {
+        text-shadow: 0.5px 0.5px ghostwhite;
+        color: white;
+        font-family: 'Arbutus', cursive;
+    }
+    .jumbotron > p {
+        color: white;
+        font-family: 'Montserrat', sans-serif;
+    }
+#indexdivs {
+    text-align: center;
+    padding: 20px;
+    background-color: RGBa(57,115,163,0.7);
+    color: white;
+    border: 1px black;
+    border-radius: 15px;
+    
+    
+}
+    #indexdivs > p {
+        font-size: 15px;
+        font-family: 'Montserrat', sans-serif;
+        font-weight:500;
+       
+    }
+#indexdivs > h2{
+    font-size:30px;
+}
+    #indexdivs > h4 {
+        font-family: 'Griffy', cursive;
+    }
+
+    #indexdivs > a {
+       
+        border: 2px 2px 2px 2px white;
+        color: black;
+        background-color: white;
+    }
+    #indexdivs > h2 {
+        font-family: 'Montserrat', sans-serif;
+        font-weight:700;
+    }
+
+
+.table {
+    background-color: rgba(57,115,163, .70);
+    /*backdrop-filter: blur(5px);*/
+    border-radius: 15px;
+    color: white;
+    font-family: 'Nanum Gothic Coding', monospace;
+    font-size: 18px;
+}
+#zelda {
+    color: white;
+    font-family: 'Proza Libre', sans-serif;
+    font-size: 20px;
+    text-align: center;
+}
+#ganon {
+    color: white;
+    font-family: 'Proza Libre', sans-serif;
+    font-size:14px;
+}
+
+.text-center > h2 {
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-weight:bold;
+}
+.text-center > h3 {
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+}
+#vendorDetails {
+    color : white;
+}
+
+#ProductDetails {
+    color: white;
+}
+
+#OrderDetails {
+    color: white;
+}
+
+#InvoiceDetails {
+    color:white;
+}
+
+#ApplicationUser {
+    color:white;
+}
+
+#ManageIndex {
+    color: white;
+}
+
+#account{
+    color : white;
+}
+
+#vendorKey {
+    overflow-wrap: break-word;
+    border: 1px solid white;
+}
+#vendorUserTableTitle{
+    color:white;
+    
+}
+#OrderDetailsInInvoice{
+    color:black;
+}
+#Productfilter {
+    color: white;
+}
+
+#productSearchButton{
+    color:black;
+}
+
+#ProductCategory {
+    color:white;
+}
+
+#VATCategory {
+    color: white;
+}
+
+#ProductUnitOfMeasurement{
+    color : white;
+}
+
+div > h3 {
+    color: white;
+
+}
+.body-content > footer{
+    color:white;
+}
+#mynav .contact a:after {
+    content: '|';
+    padding-left: 30px;
+    color: white;
+}
+#mynav .invoice a:after {
+    content: '|';
+    padding-left: 30px;
+    color: white;
+}
+#mynav {
+    font-weight: 700;
+    color: ghostwhite;
+}
+.dropdown-menu {
+    background-color: rgba(57,115,163, .90);
+}
+#dropdownCategories{
+    width:180px;
+}
+#whiteText{
+    color:white;
+}
+
+#searchBox{
+    color:black;
+}
+
+/*--------------------------------------------------------------
+# Navigation Menu
+--------------------------------------------------------------*/
+/* Desktop Navigation */
+.navbar {
+    background: #0B3246;
+    -o-transition: all .6s;
+    -moz-transition: all .6s;
+    -webkit-transition: all .6s;
+    -ms-transition: all .6s;
+    transition: all .6s;
+    backface-visibility: hidden;
+    font-family: 'BioRhyme', serif;
+    font-size: large;
+    padding-right:20px;
+}
+.navbar-inverse .navbar-nav > li > a {
+    color: ghostwhite;
+}
+.navbar-inverse .navbar-brand {
+    color: ghostwhite;
+}
+  /*  .navbar.navbar-no-bg {
+        background: #444;
+        background: rgba(0, 0, 0, 0.2);
+    }
+
+.navbar-dark .navbar-nav {
+    font-size: 15px;
+    color: #fff;
+    text-transform: uppercase;
+}
+
+    .navbar-dark .navbar-nav .nav-link {
+        color: #fff;
+        color: rgba(255, 255, 255, 1);
+        border: 0;
+    }
+
+        .navbar-dark .navbar-nav .nav-link:hover {
+            color: #fff;
+        }
+
+        .navbar-dark .navbar-nav .nav-link:focus {
+            color: #fff;
+            outline: 0;
+        }*/
+
+.navbar-expand-md .navbar-nav .nav-link {
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+/*--------------------------------------------------------------
+# Header
+--------------------------------------------------------------*/
+#header {
+    height: 80px;
+    transition: all 0.5s;
+    z-index: 997;
+    transition: all 0.5s;
+    padding: 20px 0;
+    background: #2d6760;
+}
+
+#about-title {
+    font-family: 'Arbutus', cursive;
+    font-weight: 400;
+    font-size: xx-large;
+    text-decoration-color: ghostwhite;
+    text-align:center;
+}
+
+  
+
+#main {
+    margin-top: 80px;
+}
+
+
+.navbar-header {
+    
+    font-family: 'Arbutus', cursive;
+    font-weight:400;
+    font-size:xx-large;
+    text-decoration-color:ghostwhite;
+}
+
+#editDetails{
+    color:white;
+}
+
+#main-body{
+    
+    display:flex;
+    flex-direction:column;
+    min-height:80vh;
+}
+
+/*#tableLinesVerticalAlign > td{
+    vertical-align:middle;
+
+}*/
+
+#productLinks{
+    width:120px;
+}
+
+/*footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: RGB(0,0,0,0.0);
+    color: #fff;
+    text-align: center;
+    font-size: medium;
+    
+}
+    footer > hr {
+        width: 100%;
+    }*/
+
+#contactDetails {
+    margin-top:50px;
+    height: 125px;
+   
+}
+    
+#contactName{
+    height:75px;
+    vertical-align:middle;
+}
+
+.dropdown-menu > a{
+    color:white;
+}
+
+#homeManagerAdminOptions {
+    display: inline-flex;
+    align-content: center;
+}
+
+#aboutContainers {
+   margin-bottom:10px;
+    padding: 20px;
+    background-color: RGBa(57,115,163,0.7);
+    color: white;
+    border: 1px black;
+    border-radius: 15px;
+}
+
+#tdNoBorderTop{
+    border-top:hidden;
+}
+
+#aboutDivs{
+    margin-left:30px;
+}
+
+
+   

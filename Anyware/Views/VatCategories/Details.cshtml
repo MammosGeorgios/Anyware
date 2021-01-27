@@ -1,0 +1,41 @@
+﻿@model Anyware.Models.VatCategory
+
+@{
+    ViewBag.Title = "Details";
+}
+
+
+<div>
+    <div id="VATCategory">
+        <h4>Vat Category Details</h4>
+
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.VatName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.VatName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.VatPercentage)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.VatPercentage)
+            </dd>
+
+        </dl>
+    </div>
+</div>
+    <p>
+        <div class="col-md-12">
+            <div class="col-md-6">
+                <a class="btn btn-default col-md-6" href="/VatCategories/Edit/@Model.VatCategoryID ">EDIT</a>
+                <a class="btn btn-default col-md-6" href="/VatCategories/Index">BACK</a>
+            </div>
+            <div class="col-md-6"></div>
+        </div>
+    </p>

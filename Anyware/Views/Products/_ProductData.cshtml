@@ -1,0 +1,191 @@
+﻿
+@model IEnumerable<Anyware.Models.Product>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="text-center">
+    <h2>Product List</h2>
+</div>
+<div>
+    <div class="col-md-6">
+        <p>
+            
+            @if (User.IsInRole("Manager") || User.IsInRole("Administrator"))
+            {
+                <div class="col-md-12">
+                    <a class="btn btn-default col-md-4" href="/Products/Create">NEW PRODUCT</a>
+                </div>
+            }
+        </p>
+
+        <p>
+            
+            <div class="col-md-12">
+                <a class="btn btn-default col-md-4 " href="./Orders/OrderDetails">ORDER DETAILS</a>
+            </div>
+        </p>
+    </div>
+
+    <div class="col-md-6">
+        @using (Html.BeginForm("Index", "Products"))
+{
+
+
+//Search Product Name Filter ->
+<br />
+<p id="Productfilter">
+
+    Filter by Product or Category Name: @Html.TextBox("SearchString", null, new { @id = "searchBox" })
+    <input type="submit" value="Search" class="btn btn-light" id="productSearchButton" />
+
+</p>
+}
+
+    </div>
+</div>
+<table class="table ">
+    <tr>
+
+        <th id="tdNoBorderTop">
+
+          
+            @Html.ActionLink("Category", "Index", new { sortOrder = ViewBag.CategoryName }, new { @id = "zelda" })
+        </th>
+
+        <th id="tdNoBorderTop">
+            @Html.ActionLink("Unit", "Index", new { sortOrder = ViewBag.ProductUnitOfMeasurement }, new { @id = "zelda" })
+            
+        </th>
+        <th id="tdNoBorderTop">
+            @Html.ActionLink("Product Name", "Index", new { sortOrder = ViewBag.NameSortParm }, new { @id = "zelda" })
+            
+        </th>
+        <th id="tdNoBorderTop">
+            
+            @Html.ActionLink("Description", "Index", new { sortOrder = ViewBag.Description }, new { @id = "zelda" })
+        </th>
+        <th id="tdNoBorderTop">
+            @Html.ActionLink("Product Status", "Index", new { sortOrder = ViewBag.ProductStatusSortParm }, new { @id = "zelda" })
+            
+        </th>
+        <th id="tdNoBorderTop">
+            @Html.ActionLink("Product Price", "Index", new { sortOrder = ViewBag.PriceSortParm }, new { @id = "zelda" })
+            
+        </th>
+        <th id="tdNoBorderTop">
+            <a id="zelda">
+                @Html.DisplayNameFor(model => model.UnitsInStock)
+            </a>
+        </th >
+        @if (!(User.IsInRole("Administrator") || User.IsInRole("Manager"))) { 
+            <th id="tdNoBorderTop">
+                <a id="zelda">
+                    Add to Order
+                </a>
+            </th>
+            }
+        @if (User.IsInRole("Administrator") || User.IsInRole("Manager"))
+        {
+            <th id="tdNoBorderTop"></th>
+        }
+    </tr>
+
+    @foreach (var item in Model)
+    {
+<tr id="tableLinesVerticalAlign">
+    <td>
+        @Html.DisplayFor(modelItem => item.ProductCategory.CategoryName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.ProductUnitOfMeasurement.UnitName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.ProductName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Description)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.ProductStatus)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.ProductPrice)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.UnitsInStock)
+    </td>
+    @if (!(User.IsInRole("Administrator") || User.IsInRole("Manager")))
+    {
+
+<td>
+    @using (Html.BeginForm("Create", "ProductInOrders", FormMethod.Post, new { @class = "form-inline " }@*"QuantityInput" + item.ProductID*@))
+
+{
+<input class="control-label d-none" value=" @item.ProductID" name="ProductID" hidden />
+<div class="col-md-10 ">
+    @Html.TextBox("Quantity", 0, new
+{
+  @class = "form-control",
+  @id = "Validatetextbox",
+  @max = @item.UnitsInStock,
+  @type = "number",
+  @min = 1,
+  required = "required"
+})
+</div>
+<input type="submit" class="btn btn-danger col-md-2" value="+" id="@item.ProductID">
+}
+</td>
+     }
+            
+
+
+
+        
+        @if (User.IsInRole("Administrator") || User.IsInRole("Manager"))
+        {
+            <td id="productLinks">
+                @Html.ActionLink("Edit", "Edit", new { id = item.ProductID }, new { @id = "ganon" }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ProductID }, new { @id = "ganon" })
+                @Html.ActionLink("Delete", "Delete", new { id = item.ProductID }, new { @id = "ganon" })
+            </td>
+        }
+    </tr>
+
+    }
+
+</table>
+
+
+
+<script type="text/javascript">
+            console.log(110);
+            $(document).ready(function () {
+                var stock = 0;
+                console.log(100);
+
+
+
+            @foreach (var item in Model)
+{
+                <text>
+                $("#@item.ProductID").click(function () {
+                    stock = @Html.Raw(item.UnitsInStock);
+
+                    if ($("[id='Validatetextbox @Html.Raw(item.ProductID)']").val() > stock) {
+
+
+                        alert("Not enough available Stock. Please change the request");
+                            return false;
+                            location.reload();
+                    }
+                })
+                     </text>
+
+
+                            }
+
+</script>
+

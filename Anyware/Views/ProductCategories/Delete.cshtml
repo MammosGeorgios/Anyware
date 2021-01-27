@@ -1,0 +1,46 @@
+﻿@model Anyware.Models.ProductCategory
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h3>Are you sure you want to delete this?</h3>
+<div id="ProductCategory">
+    
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.VatCategory.VatName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VatCategory.VatName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CategoryName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CategoryName)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+<div>
+    <div class="form-actions no-color col-md-6">
+        <input type="submit" value="DELETE" class="btn btn-default col-md-3" />
+        <a class="btn btn-default col-md-3" href="/ProductCategories/Index">BACK</a>
+        <div class="col-md-6"></div>
+    </div>
+    <div class="col-md-6"></div>
+</div>
+    <br />
+    }
+</div>
+
+
+

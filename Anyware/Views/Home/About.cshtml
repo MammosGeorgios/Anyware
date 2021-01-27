@@ -1,0 +1,209 @@
+﻿@{
+    ViewBag.Title = "About";
+}
+
+
+<div id="about-title">
+    Anyware Project
+</div>
+<br />
+<div id="aboutContainers">
+    "Anyware" is a web application aiming to supply other businesses with products. By allowing the customer to directly order products from our warehouse, we have created a real-time validation 
+    system which ensures that each order goes throught a series of steps before being shipped. A database in the back-end ensures that stocks are updated accordingly and that different VAT rates,
+    depending on the product, are applied. 
+</div>
+<br />
+<div   >
+    
+    
+    <table id="homeAboutTable" class="table" >
+        <tr>
+            <td id="tdNoBorderTop">
+                Ability to register and login
+            </td>
+            <td id="tdNoBorderTop">
+                Implemented Asp.net Identity
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Abilty to connect to database
+            </td>
+            <td>
+                Connecting to a local db that can be created quickly from the application with an "update-database", including 4 initial users with all 4 different roles plus some initial products for testing
+            </td>
+        </tr>
+        <tr>
+            <td>
+                At least two different roles
+            </td>
+            <td>
+                Our application has the following roles: Administrator, Manager, Validated and Unvalidated
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Each role must have different tasks and views
+            </td>
+            <td>
+                Most of the views are different depending on the role and their tasks are different
+            </td>
+        </tr>
+        <tr>
+            <td>
+                The application must have the ability to produce reporting views with (custom) filters
+            </td>
+            <td>
+                Various implementations of this at different levels throughout the application
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Internal communication between entities
+            </td>
+            <td>
+                Real time product stock and invoice updates for both users and managers with SignalR/Ajax
+            </td>
+        </tr>
+        <tr>
+            <td>
+                E-payment process
+            </td>
+            <td>
+                Implemented Paypal epayment functionality
+            </td>
+        </tr>
+        
+    </table>
+</div>
+<br />
+<div id="aboutContainers">
+    <div>
+        <h3 class="text-center">Roles</h3>
+        <h4> Unvalidated User</h4>
+        <div>
+            This is a customer who signed up, without having a correct vendor code. 
+            Without a vendor, the application is essential locked. 
+            In a real life senario he would need to speak with his business in order to recieve the Vendor Secret Key
+        </div>
+
+    </div>
+    <div>
+        <h4> Validated User</h4>
+        <div>
+            This is a customer who signed up with a proper Vendor Secret Key or activated it later. 
+            He has full access as a customer and can make new orders for his business and make payments for it.
+        </div>
+
+    </div>
+    <div>
+        <h4> Manager</h4>
+        <div>
+            This is an AnyWare employee. His job is to manage product stock, verify order and in real life confirm their shipment to the customer. 
+            He has access to a lot of the internal data but his role is strictly business wise. 
+            He is not expected to have any knowledge about the application's internal workings.
+        </div>
+
+    </div>
+    <div>
+        <h4> Administrator</h4>
+        <div>
+            This is an Anyware employee. Difference with manager is that he has nearly unrestricted access to all the data, including internal tables.
+            His role would be troubleshooting if needed, plus all the manager responsibilties. 
+            His views are made with the assumption of having full knowledge of how the application works and access to the entire database/source code.
+            He is also responsible for managing users(in case of lockouts etc)
+        </div>
+
+    </div>
+
+</div>
+<br />
+<div id="aboutContainers">
+    <h3 class="text-center">Database</h3>
+    <div>
+        The database tables are:
+        <ul>
+            <li>AspNetRoles</li>
+            <li>AspNetUserRoles</li>
+            <li>AspNetUsers</li>
+            <li>Invoices</li>
+            <li>Orders</li>
+            <li>ProductCategories</li>
+            <li>ProductInOrders</li>
+            <li>Products</li>
+            <li>ProductUnitOfMeasurements</li>
+            <li>VatCategories</li>
+            <li>Vendors</li>
+        </ul>
+
+        The AspNet tables come from the Asp.net Identity and are what allows us to register/login, plus have dynamic views depending on user roles
+        <br />
+        ProductCategories, ProductUnitOfMeasurements and VatCategories are tables that help define a product and it's final price.
+        <br />
+        Orders, ProductInOrders, Products, Invoices and Vendors are the core of our business logic. 
+    </div>
+</div>
+<br />
+<div id="aboutContainers">
+    <h3 class="text-center">Business Logic </h3>
+    <div>
+        Our application fullfils the following scenario:
+        <br />
+        <br />
+        <i>
+            We are a supplier of products to other businesses.
+            We are supposed to be selling in stock and high volume and all application users will essential be employees of other businesses working with us.
+        </i>
+
+        <br />
+        <br />
+        <h5>To do the above, our application has the following.</h5><br /> 
+        First we have the Vendors, who are all the businesses we are working with. A new Vendor can only be created by a Manager+ to emulate the "in real life" transaction betweeen the two businesses.<br /> <br />
+        Then each vendor can have their employees sign up to our application. This is all automated thanks to the Secret Vendor Key, which can only be retrieved by means outside the application(to the user).<br /> <br />
+        Once a user is validated, he/she can begin creating orders for the Vendor. Once an order is finalised, an invoice is created and is then shown to a Manager+. <br /> <br />
+        The Manager+ has to manually confirm the order(emulating the real life part of actually preparing the order for shipment). <br /> <br />
+        Changes to the status of an order are shown in real time to both User and Manager+.<br /><br />
+        Once an order is ready and shipped, the User has the options to pay(in a real life scenario this wouldn't be done with paypal or credit/debit cart but it was a requirement for the assignment, therefore...)<br /><br />
+        The Manager is also responsible to update the product stocks(which also update in real time for the user thanks to SignalR implementation) and create/update any of the categories/products if needed. 
+    </div>
+
+
+</div>
+<br />
+<div id="aboutContainers">
+    <h3 class="text-center">Usage Scenario</h3>
+    <h4>Initially login as a Manager+ and create a new Vendor. Make note of the Vendor Secret Key.</h4>
+    <div id="aboutDivs">
+
+        Assuming a business wants to use the application for the first time, this would be the first step. The Manager will create the new Vendor and "sort out the paperwork" in real life.
+    </div>
+    <h4>Register a new account - WITHOUT using the Secret Vendor Key</h4>
+    <div id="aboutDivs">
+
+        This will make an Unvalidated User, who will have to access to the application other than getting verified by using a Vendor Key. Play around to test the restrictions.
+    </div>
+    <h4>Verify the account or Create a new verified account</h4>
+    <div id="aboutDivs">
+
+        Now the User will have access to all the views that allow him to create new orders/invoices. Try to create a new order, use the filters and sortings in the products index etc
+    </div>
+    <h4>Login as both user and manager and test SignalR functionalities in Products and Invoices </h4>
+    <div id="aboutDivs">
+
+        Create a new invoice as a user and see both the product stocks get updated and the invoice being created automatically and show up instantly to the manager.<br />
+        You can also edit a product details and the changes will immediately show to the user. Multiple checks have been added to ensure there are no invalid orders,
+        but there is also the Manager who's job is making sure everything is in order.
+    </div>
+    <h4>Login as Administrator</h4>
+    <div id="aboutDivs">
+
+        The administrator has a lot more unrestricted access. Check out the different option and views he has access to.
+    </div>
+    <h4>Final notes</h4>
+    <div id="aboutDivs">
+
+        Many more usage scenarios have been thought off and quite a lot of them have been implemented! Try it out!
+    </div>
+
+
+</div>

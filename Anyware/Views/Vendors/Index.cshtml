@@ -1,0 +1,69 @@
+﻿@model IEnumerable<Anyware.Models.Vendor>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="text-center">
+    <h2>Vendors</h2>
+</div>
+
+@if (User.IsInRole("Administrator") || User.IsInRole("Manager"))
+{
+<div>
+
+    @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-default" })
+</div>
+}
+<table class="table">
+    <tr>
+        <th id="tdNoBorderTop">
+            @Html.DisplayNameFor(model => model.VendorName)
+        </th>
+        @if (User.IsInRole("Manager") || User.IsInRole("Administrator"))
+        {
+            <th id="tdNoBorderTop">
+                @Html.DisplayNameFor(model => model.VendorAFM)
+            </th>
+        }
+        <th id="tdNoBorderTop">
+            @Html.DisplayNameFor(model => model.VendorLegalName)
+        </th>
+        <th id="tdNoBorderTop">
+            @Html.DisplayNameFor(model => model.VendorDOI)
+        </th>
+        <th id="tdNoBorderTop"></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.VendorName)
+            </td>
+            @if (User.IsInRole("Manager") || User.IsInRole("Administrator"))
+            {
+                <td>
+                    @Html.DisplayFor(modelItem => item.VendorAFM)
+                </td>
+            }
+            <td>
+                @Html.DisplayFor(modelItem => item.VendorLegalName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.VendorDOI)
+            </td>
+            <td>
+                @Html.ActionLink("Details", "Details", new { id = item.VendorID }, new { @id = "ganon" })
+                @if (User.IsInRole("Manager") || User.IsInRole("Administrator"))
+                {
+                    <span> | </span>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.VendorID }, new { @id = "ganon" })<span> | </span>
+
+                    @Html.ActionLink("Delete", "Delete", new { id = item.VendorID }, new { @id = "ganon" })
+                }
+            </td>
+        </tr>
+    }
+
+</table>

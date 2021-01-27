@@ -1,0 +1,47 @@
+﻿@model Anyware.Models.ProductCategory
+
+@{
+    ViewBag.Title = "Details";
+}
+<div id="ProductCategory">
+    <h2> Product Category Details</h2>
+    </div>
+
+    <div id="ProductCategory">
+
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.VatCategory.VatName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.VatCategory.VatName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.CategoryName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.CategoryName)
+            </dd>
+
+        </dl>
+    </div>
+   
+
+    <p>
+        <div class="col-md-6">
+            <div class="col-md-6">
+               
+                <a class="btn btn-default col-md-6" href="/ProductCategories/Edit/@Model.ProductCategoryID ">EDIT</a>
+               
+                <a class="btn btn-default col-md-6" href="/ProductCategories/Index">BACK</a>
+            </div>
+            <div class="col-md-6"></div>
+        </div>
+        <br />
+    </p>
+
+    

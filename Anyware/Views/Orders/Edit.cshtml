@@ -1,0 +1,55 @@
+﻿@model Anyware.Models.Order
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <h4>Order</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.OrderID)
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.UserId, "UserId", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("UserId", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.UserId, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.DateStarted, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.DateStarted, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.DateStarted, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group col-md-6">
+
+        <div class="col-md-6">
+            <input type="submit" value="SAVE" class="btn btn-default col-md-6" />
+            <a class="btn btn-default col-md-6" href="/Orders/Index">BACK</a>
+        </div>
+        <div class="col-md-6"></div>
+        <br />
+    </div>
+    <br />
+    <br />
+</div>
+}
+
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

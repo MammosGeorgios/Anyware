@@ -1,0 +1,43 @@
+﻿@model IEnumerable<Anyware.Models.ProductUnitOfMeasurement>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="text-center" id="ProductUnitOfMeasurement">
+    <h2>Units Of Measurement</h2>
+</div>
+
+<p>
+
+    <a class="btn btn-default col-md-2" href="/ProductUnitOfMeasurements/Create">CREATE NEW</a>
+</p>
+<table class="table">
+    <tr>
+        <th id="tdNoBorderTop">
+            @Html.DisplayNameFor(model => model.UnitName)
+        </th>
+        <th id="tdNoBorderTop">
+            @Html.DisplayNameFor(model => model.UnitAbbreviation)
+        </th>
+        <th id="tdNoBorderTop"></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.UnitName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UnitAbbreviation)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ProductUnitOfMeasurementID }, new { @id = "ganon" }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ProductUnitOfMeasurementID }, new { @id = "ganon" }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ProductUnitOfMeasurementID }, new { @id = "ganon" })
+            </td>
+        </tr>
+    }
+
+</table>

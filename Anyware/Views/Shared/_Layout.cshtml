@@ -1,0 +1,107 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Arbutus&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,300&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=BioRhyme:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cutive+Mono&family=Nanum+Gothic+Coding&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Proza+Libre&display=swap" rel="stylesheet">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+
+            <div class="navbar-header">
+
+                @Html.ActionLink("AnyWare", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+
+            </div>
+            <div class="navbar-collapse collapse" id="mynav">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                    <li class="nav-item contact">@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+
+                        <li>@Html.ActionLink("Products", "Index", "Products")</li>
+
+                        <li>@Html.ActionLink("Vendors", "Index", "Vendors")</li>
+
+                        <li class="nav-item invoice">@Html.ActionLink("Invoices", "Index", "Invoices")</li>
+
+
+                    }
+                    @if (User.IsInRole("Manager") || (User.IsInRole("Administrator")))
+                    {
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">
+                                Categories
+                            </a> 
+                            <div class="dropdown-menu" id="dropdownCategories" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="#">@Html.ActionLink("Product Categories", "Index", "ProductCategories")</a> <br />
+                                <a class="dropdown-item" href="#">@Html.ActionLink("VAT Categories", "Index", "VatCategories")</a><br />
+                                <a class="dropdown-item" href="#">@Html.ActionLink("Units of Measurement", "Index", "ProductUnitOfMeasurements")</a>
+                            </div>
+
+                        </li>
+                      
+
+                    }
+                    @if (User.IsInRole("Administrator"))
+                    {
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">
+                                Admin Tools
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="#">@Html.ActionLink("Users", "Index", "ApplicationUsers")</a> <br />
+                                <a class="dropdown-item" href="#">@Html.ActionLink("Orders", "Index", "Orders")</a><br />
+                                <a class="dropdown-item" href="#">@Html.ActionLink("Product In Orders", "Index", "ProductInOrders")</a>
+                            </div>
+
+                        </li>
+                    }
+
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+
+    <div class="container body-content">
+        @RenderBody()
+        <footer>
+            <hr />
+            <p>&copy; @DateTime.Now.Year - AnyWare Project - Made by Mammos Georgios, Vasilis Ntousopoulos and Amalia Kravvari</p>
+        </footer>
+
+    </div>
+
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    @RenderSection("Javascript", required: false)
+</body>
+
+</html>
